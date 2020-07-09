@@ -28,7 +28,7 @@ export default{
 }
 </script>
     
-<style>
+<style scoped>
 	.left{
 		width:75%;
 		height:100%;

@@ -21,7 +21,7 @@ module.exports = {
   devServer: {
       port:8089,
       host: "localhost",   // 0.0.0.0
-      open: true,          // 配置自动启动浏览器
+      open: false,          // 配置自动启动浏览器
       https: false, 
       hotOnly: false,
       overlay: {

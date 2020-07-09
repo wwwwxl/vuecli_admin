@@ -20,7 +20,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.right{
 		width: 25%;
 		height:100%;

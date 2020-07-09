@@ -20,7 +20,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.myhead{
 		width: 100%;
 		height: 120px;

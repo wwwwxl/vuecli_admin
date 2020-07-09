@@ -14,6 +14,8 @@
 		        <div id="navbar" class="collapse navbar-collapse">
 		          <ul class="nav navbar-nav">
 		            <li><router-link to='/'>主页</router-link></li>
+					<li><router-link to='/mytable'>表格学习mytable</router-link></li>
+					<li><router-link to='/TreeTable'>表格学习TreeTable</router-link></li>
 					<li><router-link to='/about'>关于我们</router-link></li>
 		          </ul>
 				  

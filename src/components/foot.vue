@@ -20,7 +20,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.foot{
 		width: 100%;
 		height: 100px;
