@@ -11,7 +11,7 @@
 								      v-if="list.type=='checkbox'">
 									<input class="regular-checkbox"
 									       :type="list.type"
-										   :name="list.typeid"
+										   :typeid="list.typeid"
 									       :id="item.id"
 									       :value="item.id"
 									       v-model="$store.state.checkAll">
@@ -126,9 +126,8 @@
 	.body_div div tr td {
 		position: relative;
 		width: 25%;
-		min-width:120px;
 		height: 34px;
-		padding: 1px 15px;
+		padding: 1px 5px;
 		text-align: center;
 		border-right: 1px solid #ebeef5;
 		overflow: hidden;

@@ -9,11 +9,11 @@
 								<input class="regular-checkbox"
 									   :type="item.title"
 									   :typeid="item.typeid"
-									   :id="item.name"
+									   :id="item.id"
 									   :value="item.name"
-									   @change="toggleAll"
+									   @change="toggleAll(item.typeid)"
 									   v-model="checkedAll">
-								<label :for="item.name"></label>
+								<label :for="item.id"></label>
 								<span>{{item.name}}</span>
 							</div>
 							<!-- 不是多选框显示数据 -->
@@ -33,8 +33,8 @@
 			};
 		},
 		methods: {
-			toggleAll() {
-				console.log(this.checkedAll);
+			toggleAll(typeid) {
+				console.log(this.checkedAll,typeid);
 				this.$emit("toggle",this.checkedAll);
 			}
 		}
