@@ -16,13 +16,14 @@
 		            <li><router-link to='/'>主页</router-link></li>
 					<li><router-link to='/mytable'>表格学习mytable</router-link></li>
 					<li><router-link to='/TreeTable'>表格学习TreeTable</router-link></li>
+					<li><router-link to='/elTable'>element按钮权限表格</router-link></li>
 					<li><router-link to='/about'>关于我们</router-link></li>
 		          </ul>
 				  
 				  <ul class="nav navbar-nav navbar-right">
 				    <li><router-link to='/addCustomer'>添加用户</router-link></li>
 				  </ul>
-		        </div><!--/.nav-collapse -->
+		        </div>
 		      </div>
 		</nav>
 		<router-view></router-view>

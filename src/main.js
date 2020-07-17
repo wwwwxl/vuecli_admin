@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import store from './store/index.js';
 
-// import ElementUI from 'element-ui';
-// import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 import VueRouter from 'vue-router';
 
@@ -20,12 +21,13 @@ import MyTable from './components/MyTable.vue'
 import addCustomer from './components/addCustomer.vue'
 import CustomerDetails from './components/CustomerDetails.vue'
 import Edit from './components/Edit.vue'
-
 import TreeTable from './components/TreeTable.vue'
+
+import elTable from './components/eleMent/elTable.vue'
 
 Vue.config.productionTip = false
 
-// Vue.use(ElementUI);
+Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
@@ -40,13 +42,13 @@ var router=new VueRouter({
 		{path:"/addCustomer",component:addCustomer},
 		{path:"/customer",component:CustomerDetails},
 		{path:"/edit",component:Edit},
-		{path:"/TreeTable",component:TreeTable}
-		// {path:"/customer/:id",component:CustomerDetails}
-		// {path:"/customer/:id",name:"CustomerDetails",component:CustomerDetails}
+		{path:"/TreeTable",component:TreeTable},
+		{path:"/elTable",component:elTable}
 	]
 })
 
 new Vue({
+	store,
   router,
   render: h => h(App),
 }).$mount('#app')

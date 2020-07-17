@@ -5,16 +5,17 @@
 						<th v-for="item in tableHead"
 						    :key="item.id">
 							<!-- 判断类型是否为多选框 -->
-							<span class="span_box" v-if="item.type=='checkbox'">
+							<div class="span_box" v-if="item.type=='checkbox'">
 								<input class="regular-checkbox"
 									   :type="item.title"
+									   :typeid="item.typeid"
 									   :id="item.name"
 									   :value="item.name"
 									   @change="toggleAll"
 									   v-model="checkedAll">
-								<label :for="item.name">
-								</label>
-							</span>
+								<label :for="item.name"></label>
+								<span>{{item.name}}</span>
+							</div>
 							<!-- 不是多选框显示数据 -->
 							<span v-else>{{item.name}}</span>
 						</th>
@@ -41,6 +42,9 @@
 </script>
 
 <style scoped>
+	.table_body tr:first-child th:first-child {
+		min-width:60px;
+	}
 	/* 表格tr盒子div */
 	.table_body {
 		width: 100%;
@@ -60,9 +64,8 @@
 	/* 表格tr th */
 	.table_body tr th {
 		width: 25%;
-		min-width:120px;
 		height: 34px;
-		padding: 1px 15px;
+		padding: 1px 5px;
 		text-align: center;
 		border-right: 1px solid #ebeef5;
 		overflow: hidden;
@@ -72,22 +75,15 @@
 	.table_body tr th:last-child{
 		border-right:none;
 	}
-	.table_body tr th span{
-		position: relative;
-		width: 100%;
-		height: 100%;
-		display: inline-block;
-		text-align: center;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
 	/* 包裹label样式的span盒子 */
 	.span_box{
 		position: relative;
-		width: 16px;
-		height: 16px;
-		display: inline-block;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 	}
 	
 	
@@ -100,9 +96,9 @@
 	
 	/* 设置label样式===多选框盒子 */
 	.regular-checkbox+label {
-		position: absolute;
-		top: 9px;
-		left: 0px;
+		position: relative;
+		width: 16px;
+		height: 16px;
 		display: inline-block;
 		/*lable是内联元素所以需要加inline-block*/
 		padding: 7px;
@@ -112,6 +108,7 @@
 		border: 1px solid #d2d2d2;
 		cursor: pointer;
 		box-sizing: border-box;
+		margin: 0 2px;
 	}
 	
 	/* :active选择活动链接，并设置其样式,常用在a标签 */
@@ -134,7 +131,7 @@
 		/*这是一个对勾*/
 		position: absolute;
 		font-size: 12px;
-		top: -8px;
+		top: -7px;
 		left: 2px;
 		color: #FFFFFF;
 		font-weight: bold;

@@ -11,21 +11,21 @@
 								      v-if="list.type=='checkbox'">
 									<input class="regular-checkbox"
 									       :type="list.type"
+										   :name="list.typeid"
 									       :id="item.id"
 									       :value="item.id"
-									       v-model="checkAll">
-									<label :for="item.id" @click="checkChangeBox(item.id)" ></label>
+									       v-model="$store.state.checkAll">
+									<!-- :for="item.id" -->
+									<label @click="checkChangeBox(item.id)" ></label>
 								</span>
-								<!-- 显示对应表头数据内容:class="{textindent:em&&list.id==1}"==文本缩进由子元素和td决定-->
+								<!-- 显示对应表头数据内容-->
 								<div class="text_div" :style="{'text-indent':emNum(em,list.id)}"  v-else>
 									<span v-if="list.id==1&&item.children" class="iconfont icon-jiantou arrow" @click="showFlag(item.children[0].id)"></span>
-									{{ item[list.title] }}<!-- <span class="span_text" :class="{textindent:em}">{{ item[list.title] }}</span> -->
+									{{ item[list.title] }}
 								</div>
 							</td>
 						</tr>
-						<transition enter-active-class="animated fadeOutDown" leave-active-class="animated fadeOutUp">
-						    <Tbody :checkAll="checkAll" :em="true" :ref="item.children[0].id" v-if="hasChildren(item.children)" :tableHead="tableHead" :tableData="item.children"></Tbody>
-						</transition>
+						<Tbody :checkAll="$store.state.checkAll" :em="item.children" :ref="item.children[0].id" v-if="hasChildren(item.children)" :tableHead="tableHead" :tableData="item.children"></Tbody>
 					</div>
 			</div>
 </template>
@@ -33,10 +33,10 @@
 <script>
 	export default {
 		name: 'Tbody',
-		props: ['tableData','tableHead','em','checkAll'],
+		props: ['tableData','tableHead','em'],
 		data() {
 			return {
-				flag:false
+				
 			};
 		},
 		methods: {
@@ -56,15 +56,7 @@
 			hasChildren(children){
 				if(children){
 					let child_arr=children;
-					if(children.length!=""){
-						let emNum=sessionStorage.getItem('emNum');
-						if(emNum){
-							emNum=parseInt(emNum)+1;
-							sessionStorage.setItem('emNum',emNum);
-						}else{
-							sessionStorage.setItem('emNum',0);
-							return emNum + 'em';
-						}
+					if(child_arr.length!=""){
 						return true;
 					}else{
 						return false;
@@ -72,27 +64,29 @@
 				}
 			},
 			//计算缩进
-			emNum(flag,id){
-				if(flag&&id==1){
-					let emNum=sessionStorage.getItem('emNum');
-					return emNum + 'em';
+			emNum(children,id){
+				//console.log('children',children)
+				if(children&&id==1){
+					let leves=children[0].id.length-2;
+					return leves+'em'
 				}
 			},
 			//点击自身事件
 			checkChangeBox(id){
-				this.flag=!this.flag;
-				let obj={
-					id:id,
-					flag:this.flag
-				}
-				this.$emit("checkLabelCli",obj);
-			}
+				console.log("触发触发",id);
+				this.$store.commit('radioFlag',id);
+				console.log("选中的值",this.$store.state.checkAll)
+			},
+			
 		}
 	};
 </script>
 
 <style scoped>
 	@import '../icon/Aicon.css';
+	.body_div tr:first-child td:first-child{
+		min-width: 60px;
+	}
 	/* 表格盒子div */
 	.body_div {
 		width: 100%;
@@ -147,7 +141,7 @@
 	/* checkbox盒子 */
 	.body_div div tr td>span{
 		position: relative;
-		width: 100%;
+		/* width: 100%; */
 		height: 100%;
 		display: inline-block;
 		text-align: center;

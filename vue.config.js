@@ -24,6 +24,7 @@ module.exports = {
       open: false,          // 配置自动启动浏览器
       https: false, 
       hotOnly: false,
+	  hot:true,
       overlay: {
           warnings: true,
           errors: true
