@@ -3,13 +3,20 @@ import App from './App.vue'
 
 import store from './store/index.js';
 
+import SvgIcon from './components/SvgIcon/index.js';
+Vue.use(SvgIcon);
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 import VueRouter from 'vue-router';
+Vue.use(VueRouter);
 
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+Vue.use(VueAxios, axios);
+
 import animated from 'animate.css';
 Vue.use(animated);
 
@@ -25,11 +32,7 @@ import TreeTable from './components/TreeTable.vue'
 
 import elTable from './components/eleMent/elTable.vue'
 
-Vue.config.productionTip = false
-
-Vue.use(ElementUI);
-Vue.use(VueRouter);
-Vue.use(VueAxios, axios);
+Vue.config.productionTip = false;
 
 //设置路由
 var router=new VueRouter({

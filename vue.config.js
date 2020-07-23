@@ -7,6 +7,16 @@ module.exports = {
   lintOnSave: false,          // 关闭eslint代码检查
   filenameHashing: false,     // 生成的静态资源名, 默认加了hash, 命名.后面的为hash：chunk-2d0aecf8.71e621e9
   productionSourceMap:false,  // 生产环境下css 分离文件, sourceMap 文件
+  chainWebpack: config => {
+	  const svgRule = config.module.rule('svg')
+	  // 清除已有的所有 loader,如果你不这样做，接下来的 loader 会附加在该规则现有的 loader 之后。
+	  svgRule.uses.clear()
+	  // 添加要替换的 loader
+	  svgRule.use('svg-sprite-loader').loader('svg-sprite-loader')
+	  .options({
+		  symbolId: 'icon-[name]'
+	  })
+  },
   css: {   
       extract: false,      // 是否使用css分离插件 ExtractTextPlugin
       sourceMap: false,   // 开启 CSS source maps        
@@ -16,7 +26,7 @@ module.exports = {
           sass: {
               data: `@import "./src/assets/hotcss/px2rem.scss";`
           }
-      }        
+      }
   },
   devServer: {
       port:8089,
