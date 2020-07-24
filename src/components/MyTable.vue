@@ -1,10 +1,10 @@
 <template>
 	<div class="container">
 		<div class="table_bodybox">
-			<table class="table_body"
-			       border="1">
+			<table class="table_body">
 				<thead>
-					<tr class="table_tr" v-if="tableHead">
+					<tr class="table_tr"
+					    v-if="tableHead">
 						<!-- 循环表头 -->
 						<th v-for="item in tableHead"
 						    :key="item.id">
@@ -15,7 +15,6 @@
 									       @click="toggleAll"
 									       :type="item.title"
 									       :id="item.name"
-									       :value="item.name"
 									       v-model="checkedAll">
 									<label :for="item.name"></label>
 								</span>
@@ -28,24 +27,25 @@
 				</thead>
 				<tbody>
 					<!-- 循环表格数据长度==表格行数据 -->
-						<tr class="table_tr" v-for="(item, index) in tableData" :key="index">
-							<!-- 循环表格对应列数据数据 -->
-							<td v-for="list in tableHead"
-							    :key="list.id">
-								<!-- 判断头部数据类型，决定渲染的是多选框还是数据 -->
-								<span class="span_box"
-								      v-if="list.type=='checkbox'">
-									<input class="regular-checkbox"
-									       :type="list.type"
-									       :id="item.id"
-									       :value="item.id"
-									       v-model="checked">
-									<label :for="item.id"></label>
-								</span>
-								<!-- 显示对应表头数据内容 -->
-								<span v-else>{{ item[list.title] }}</span>
-							</td>
-						</tr>
+					<tr class="table_tr"
+					    v-for="(item, index) in tableData"
+					    :key="index">
+						<!-- 循环表格对应列数据数据 -->
+						<td v-for="list in tableHead"
+						    :key="list.id">
+							<!-- 判断头部数据类型，决定渲染的是多选框还是数据.:value和v-model是同一属性 -->
+							<span class="span_box"
+							      v-if="list.type=='checkbox'">
+								<input class="regular-checkbox"
+								       :type="list.type"
+								       :id="item.id"
+								       v-model="checked">
+								<label :for="item.id"></label>
+							</span>
+							<!-- 显示对应表头数据内容 -->
+							<span v-else>{{ item[list.title] }}</span>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -133,68 +133,7 @@
 		data() {
 			return {
 				checkedAll: false,
-				checked: [],
-				// tableHead: [{
-				// 		id: 0,
-				// 		type: 'checkbox',
-				// 		title: 'checkbox',
-				// 		name: '全选'
-				// 	},
-				// 	{
-				// 		id: 1,
-				// 		type: 'data',
-				// 		title: 'date',
-				// 		name: '日期'
-				// 	},
-				// 	{
-				// 		id: 2,
-				// 		type: 'data',
-				// 		title: 'name',
-				// 		name: '名字'
-				// 	},
-				// 	{
-				// 		id: 3,
-				// 		type: 'data',
-				// 		title: 'address',
-				// 		name: '地址'
-				// 	}],
-				// tableData: [{
-				// 		id: '00',
-				// 		type: 'checkbox',
-				// 		date: '2016-05-02',
-				// 		name: '王',
-				// 		address: '上海市普陀区金沙江路 1518 弄'
-				// 	},
-				// 	{
-				// 		id: '10',
-				// 		type: 'data',
-				// 		date: '2016-05-02',
-				// 		name: '王',
-				// 		address: '上海市普陀区金沙江路 1518 弄',
-				// 		children:[
-				// 			{
-				// 				id: '101',
-				// 				type: 'data1',
-				// 				date: '2016-05-02-11',
-				// 				name: '王11',
-				// 				address: '上海市普陀区金沙江路 1518 弄11'
-				// 			},
-				// 			{
-				// 				id: '102',
-				// 				type: 'data2',
-				// 				date: '2016-05-02-22',
-				// 				name: '王22',
-				// 				address: '上海市普陀区金沙江路 1518 弄22'
-				// 			}
-				// 		]
-				// 	},
-				// 	{
-				// 		id: '11',
-				// 		type: 'data',
-				// 		date: '2016-05-04',
-				// 		name: '王小',
-				// 		address: '上海市普陀区金沙江路 1517 弄'
-				// 	}]
+				checked: []
 			};
 		},
 		methods: {

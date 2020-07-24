@@ -10,7 +10,6 @@
 									   :type="item.title"
 									   :typeid="item.typeid"
 									   :id="item.id"
-									   :value="item.name"
 									   @change="toggleAll(item.typeid)"
 									   v-model="checkedAll">
 								<label :for="item.id"></label>

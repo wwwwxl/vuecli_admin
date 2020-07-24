@@ -18,6 +18,7 @@
 					<li><router-link to='/TreeTable'>表格学习TreeTable</router-link></li>
 					<li><router-link to='/elTable'>element按钮权限表格</router-link></li>
 					<li><router-link to='/about'>关于我们</router-link></li>
+					<li><router-link to='/wxl'>wxl</router-link></li>
 		          </ul>
 				  
 				  <ul class="nav navbar-nav navbar-right">

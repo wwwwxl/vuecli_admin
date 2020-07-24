@@ -13,6 +13,14 @@
 		   	
 		   }	
 		},
+		mounted() {
+			this.getAxios("/floorinfo", {			
+			}).then((res) => {
+				console.log("floorinfo", res);
+			}).catch((res) => {
+				console.log("error", res);
+			});
+		},
 		methods:{
 			
 		}

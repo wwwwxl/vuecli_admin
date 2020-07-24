@@ -13,7 +13,6 @@
 									       :type="list.type"
 										   :typeid="list.typeid"
 									       :id="item.id"
-									       :value="item.id"
 									       v-model="$store.state.checkAll">
 									<!-- :for="item.id" -->
 									<label @click="checkChangeBox(item.id)" ></label>

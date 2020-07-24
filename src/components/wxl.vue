@@ -11,11 +11,11 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.left_con{
 		position: absolute;
 		left: 10px;
 		font-weight: bold;
-		color: #0000EE;
+		color: $primary-color;
 	}
 </style>
